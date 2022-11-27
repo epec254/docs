@@ -5,6 +5,10 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import IntegrationFirst from '@site/src/components/IntegrationFirst';
+import { Integration } from "@site/src/components/integration"
+import { Section } from "@site/src/components/Section"
+
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -13,6 +17,8 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p>Raptor's Kubernetes controller and Python SDK transform a data scientist's Python code into operational data pipelines that power real-time model APIs.</p>
+        <p></p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -35,6 +41,13 @@ export default function Home(): JSX.Element {
       <main>
         <HomepageFeatures />
       </main>
+      <main>
+        <IntegrationFirst />
+      </main>
+{/* 
+      <Section fullWidth odd>
+      <Integration />
+    </Section> */}
     </Layout>
   );
 }

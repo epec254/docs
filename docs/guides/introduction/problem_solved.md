@@ -1,18 +1,27 @@
 ---
-title: Problem solved
+title: What problem does Raptor solve?
 sidebar_position: 1
 ---
 
-# Problem overview
-Building [real-time ML](./real_time_ml.md) is a labor-intensive (number of people) and time consuming (months) process that requires significant collaboration between data science and engineeering teams.
+## Building real-time ML is *hard*
+Building [real-time ML](./real_time_ml.md) is a labor-intensive (number of people) and time consuming (months) process that requires significant collaboration between data scientists and engineers.
 
-Teams building real-time ML face several problems:
-* How to create collaboration between data scientists and engineers so each can deliver their work product independently & effectively share requirements with the other?
-* How to reduce the long and involved productionization timeline so more ideas can be tested?
-* How to integrate ML deployment processes with the deployment process of the software apps in which the models are exposed?
-* How to effectively monitor models so that business ROI can be reported and increased?
+Teams face two top-level challenges:
+1. How to enable collaboration between data scientists and engineers so each can deliver their work product independently & effectively share requirements with the other?
+2. How to reduce the long and involved productionization timeline so more ideas can be tested and time-to-value reduced?
 
-# The nitty-gritty
+**Go [here](./what_does_raptor_do) if you'd like to skip to how Raptor addresses these challenges.**
+
+## The impact
+
+For the individuals building models, it takes forever to see the impact of their work in production.  It's difficult to get quick, iterative feedback on how their ideas do/don’t work in the real world.
+
+For the leaders, this creates a serious drag on the ROI of data science teams.  The lengthy process increases the time to market (months to release any new model/features to production), the people cost of each release (ad-hoc data science + engineering resources), and prevents teams from working on all of the potential opportunities presented by the business.
+## Why is building real-time ML hard?
+
+**TLDR; models are trained with data from analytical data sources, but when deployed in production as APIs, must use data from operational data sources.  The process of translating from code that works on analytical data sources to code that works on operational data sources is time-consuming and difficult.**
+
+<img src="/img/problem.png"></img>
 
 To deploy [real-time ML](./real_time_ml.md) inside an application, in addition to model & feature development, you must build an API service (i.e., HTTP endpoint), that can take a business-level query from the application, and return a business-level prediction.  For example, an API that takes a query such as "what is the probability that transaction ID #XYZ is fraudulent?", and returns a prediction such as “not fraud (medium confidence).”
 
@@ -33,7 +42,7 @@ Like any modern production service, this program must be:
 * Secure
 * Fast enough to be used in production (e.g., low latency)
 
-#1, #4, #5 are straightforward - there are many libraries that let you quickly stand up an API endpoint (FastAPI, AWS Lambda, etc) that contain arbitrary code/business logic.  
+#1, #4, #5 are straightforward - there are many libraries that let you quickly stand up an API endpoint (FastAPI, AWS Lambda, etc) that contain arbitrary code/business logic - but do require engineering know-how (Docker, etc).  
 
 #3 is not easy, but many tools greatly simplify the process of capturing and serving the ML model itself (Sagemaker endpoints, Vertex AI serving, BentoML, kServe, Seldon, etc).
 
@@ -53,5 +62,5 @@ Because of this, significant work is required to productionize each and every fe
 * Translate the feature engineering logic to run in this system
 * Verify and validate the logic produces equivalent data
 
-While these steps are all technically possible - they require significant expertise in both production software engineering (backend), data engineering, and systems infrastructure. Said differently, it requires an experienced engineer to collaborate with the data scientists designing the business logic and algorithms.  Neither party can release their work independently.
+While these steps are all technically possible - they require significant expertise in both production software engineering (backend), data engineering, and systems infrastructure. Said differently, it requires an experienced engineer to collaborate with the data scientists designing the business logic and algorithms, resulting in a situation where neither party can release their work independently.
 
